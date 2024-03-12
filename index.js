@@ -21,8 +21,12 @@ const db = require("./models");
 const linksRouter = require("./routes/links");
 app.use("/api/v1/links", linksRouter);
 
+const blogsRouter = require('./routes/blogs')
+app.use('/api/v1/blogs', blogsRouter)
+
 const usersRouter = require('./routes/users');
 app.use('/api/v1/users', usersRouter);
+
 
 db.sequelize.sync().then(() => {
       app.listen(port, () => {
