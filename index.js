@@ -10,8 +10,8 @@ app.use(cors({
       origin: [
             "http://localhost:5173",
             "http://localhost:5174",
-            "https://udcbd-bd.web.app",
-            "https://udcbd-bd.firebase.app",
+            "https://udcbd.web.app",
+            "https://udcbd.firebaseapp.com",
       ],
 }))
 
@@ -19,13 +19,13 @@ const db = require("./models");
 
 // Routers
 const linksRouter = require("./routes/links");
-app.use("/api/v1/links", linksRouter);
+app.use("/old_server/v1/links", linksRouter);
 
 const blogsRouter = require('./routes/blogs')
-app.use('/api/v1/blogs', blogsRouter)
+app.use('/old_server/v1/blogs', blogsRouter)
 
 const usersRouter = require('./routes/users');
-app.use('/api/v1/users', usersRouter);
+app.use('/old_server/v1/users', usersRouter);
 
 
 db.sequelize.sync().then(() => {
