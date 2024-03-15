@@ -27,6 +27,9 @@ app.use('/old_server/v1/blogs', blogsRouter)
 const usersRouter = require('./routes/users');
 app.use('/old_server/v1/users', usersRouter);
 
+const unionsRouter = require('./routes/unions');
+app.use('/old_server/v1/unions', unionsRouter)
+
 
 db.sequelize.sync().then(() => {
       app.listen(port, () => {
