@@ -28,7 +28,10 @@ const usersRouter = require('./routes/users');
 app.use('/old_server/v1/users', usersRouter);
 
 const unionsRouter = require('./routes/unions');
-app.use('/old_server/v1/unions', unionsRouter)
+app.use('/old_server/v1/unions', unionsRouter);
+
+const divisionsRouter = require('./routes/divisions');
+app.use('/old_server/v1/divisions', divisionsRouter);
 
 
 db.sequelize.sync().then(() => {
