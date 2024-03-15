@@ -36,6 +36,9 @@ app.use('/old_server/v1/divisions', divisionsRouter);
 const districtsRouter = require('./routes/districts');
 app.use('/old_server/v1/districts', districtsRouter);
 
+const upzillasRouter = require('./routes/upzillas')
+app.use('/old_server/v1/upazillas', upzillasRouter)
+
 
 db.sequelize.sync().then(() => {
       app.listen(port, () => {
