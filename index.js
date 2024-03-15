@@ -33,6 +33,9 @@ app.use('/old_server/v1/unions', unionsRouter);
 const divisionsRouter = require('./routes/divisions');
 app.use('/old_server/v1/divisions', divisionsRouter);
 
+const districtsRouter = require('./routes/districts');
+app.use('/old_server/v1/districts', districtsRouter);
+
 
 db.sequelize.sync().then(() => {
       app.listen(port, () => {
