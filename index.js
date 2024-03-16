@@ -1,19 +1,21 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require("cors")
+const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(express.json())
-app.use(cors({
-      origin: [
+app.use(express.json());
+app.use(
+    cors({
+        origin: [
             "http://localhost:5173",
             "http://localhost:5174",
             "https://udcbd.web.app",
             "https://udcbd.firebaseapp.com",
-      ],
-}))
+        ],
+    })
+);
 
 const db = require("./models");
 
@@ -21,27 +23,29 @@ const db = require("./models");
 const linksRouter = require("./routes/links");
 app.use("/old_server/v1/links", linksRouter);
 
-const blogsRouter = require('./routes/blogs')
-app.use('/old_server/v1/blogs', blogsRouter)
+const blogsRouter = require("./routes/blogs");
+app.use("/old_server/v1/blogs", blogsRouter);
 
-const usersRouter = require('./routes/users');
-app.use('/old_server/v1/users', usersRouter);
+const usersRouter = require("./routes/users");
+app.use("/old_server/v1/users", usersRouter);
 
-const unionsRouter = require('./routes/unions');
-app.use('/old_server/v1/unions', unionsRouter);
+const unionsRouter = require("./routes/unions");
+app.use("/old_server/v1/unions", unionsRouter);
 
-const divisionsRouter = require('./routes/divisions');
-app.use('/old_server/v1/divisions', divisionsRouter);
+const divisionsRouter = require("./routes/divisions");
+app.use("/old_server/v1/divisions", divisionsRouter);
 
-const districtsRouter = require('./routes/districts');
-app.use('/old_server/v1/districts', districtsRouter);
+const districtsRouter = require("./routes/districts");
+app.use("/old_server/v1/districts", districtsRouter);
 
-const upzillasRouter = require('./routes/upzillas')
-app.use('/old_server/v1/upazillas', upzillasRouter)
+const upzillasRouter = require("./routes/upzillas");
+app.use("/old_server/v1/upazillas", upzillasRouter);
 
+const unionInfosRouter = require("./routes/union_infos");
+app.use("/old_server/v1/union-infos", unionInfosRouter);
 
 db.sequelize.sync().then(() => {
-      app.listen(port, () => {
-            console.log(`UDCBD Server Running on ${port}`);
-      })
+    app.listen(port, () => {
+        console.log(`UDCBD Server Running on ${port}`);
+    });
 });
