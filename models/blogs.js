@@ -1,30 +1,28 @@
 module.exports = (sequelize, Datatypes) => {
-      const blogs = sequelize.define('blogs', {
+    const blogs = sequelize.define(
+        "blogs",
+        {
             banner: {
-                  type: Datatypes.STRING,
-                  // allowNull: false,
+                type: Datatypes.STRING,
             },
             banner_text: {
-                  type: Datatypes.STRING,
-                  // allowNull: false,
+                type: Datatypes.STRING,
             },
             image: {
-                  type: Datatypes.STRING,
-                  // allowNull: false,
+                type: Datatypes.STRING,
             },
             is_active: {
-                  type: Datatypes.BOOLEAN,
-                  allowNull: false,
+                type: Datatypes.BOOLEAN,
             },
             description: {
-                  type: Datatypes.STRING,
-                  allowNull: false,
-            }
-
-      }, {
+                type: Datatypes.STRING,
+            },
+        },
+        {
             createdAt: "created_at",
-            updatedAt: "updated_at"
-      })
+            updatedAt: "updated_at",
+        }
+    );
 
-      return blogs;
-}
+    return blogs;
+};

@@ -1,42 +1,46 @@
 module.exports = (sequelize, DataTypes) => {
-      const users = sequelize.define('users', {
+    const users = sequelize.define(
+        "users",
+        {
+            type: {
+                type: DataTypes.ENUM("admin", "user"),
+            },
             name: {
-                  type: DataTypes.STRING,
-                  allowNull: false,
+                type: DataTypes.STRING,
+            },
+            status: {
+                type: DataTypes.BOOLEAN,
             },
             phone: {
-                  type: DataTypes.STRING,
-                  allowNull: false,
-                  unique: true,
+                type: DataTypes.STRING,
+                unique: true,
             },
             email: {
-                  type: DataTypes.STRING,
-                  allowNull: false,
-                  unique: true,
+                type: DataTypes.STRING,
+                unique: true,
             },
-            password: {
-                  type: DataTypes.STRING,
-                  allowNull: false,
-            },
-            type: {
-                  type: DataTypes.ENUM('admin', 'user'),
-                  allowNull: false,
+            union_id: {
+                type: DataTypes.INTEGER,
             },
             register_for: {
-                  type: DataTypes.ENUM(
-                        'অ্যাডমিন',
-                        'সচিব',
-                        'উদ্যোক্তা',
-                        'হিসাব সহকারী',
-                        'গ্রাম-পুলিশ',
-                        'নাগরিক'
-                  ),
-                  allowNull: false,
+                type: DataTypes.ENUM(
+                    "সচিব",
+                    "চেয়ারম্যান",
+                    "উদ্যোক্তা",
+                    "হিসাব সহকারী",
+                    "গ্রাম-পুলিশ",
+                    "নাগরিক"
+                ),
             },
-      }, {
-            createdAt: 'created_at',
-            updatedAt: 'updated_at',
-      });
+            password: {
+                type: DataTypes.STRING,
+            },
+        },
+        {
+            createdAt: "created_at",
+            updatedAt: "updated_at",
+        }
+    );
 
-      return users;
+    return users;
 };
