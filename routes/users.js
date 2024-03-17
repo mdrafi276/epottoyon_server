@@ -115,10 +115,7 @@ router.post("/compare-password", async (req, res) => {
         }
 
         // Compare the provided password with the hashed password stored in the database
-        const passwordMatches = await comparePasswords(
-            "secret",
-            "$2y$10$2jvbJ.QkswujJ/rAiN2wzuhEgb/3Xr/rwNXCQQJ8YWHyr/YQp0pwa"
-        );
+        const passwordMatches = await comparePasswords(password, user.password);
         console.log(passwordMatches, email, password, user.password);
 
         if (passwordMatches) {
