@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     res.json(allUnions);
 });
 
-router.post("/", async (req, res) => {
+router.post("/add-union", async (req, res) => {
     const newUnion = req.body;
     const result = await union_infos.create(newUnion);
     res.send(result);

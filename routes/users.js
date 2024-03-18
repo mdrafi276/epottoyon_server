@@ -77,7 +77,7 @@ router.get("/get-user", async (req, res) => {
     const { email } = req.query;
 
     try {
-        const user = users.findOne({ where: { email } });
+        const user = await users.findOne({ where: { email } });
         res.json(user);
     } catch (error) {
         console.error("Error getting user:", error);
