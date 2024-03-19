@@ -68,7 +68,13 @@ module.exports = (sequelize, DataTypes) => {
             nid_birth: {
                 type: DataTypes.STRING,
             },
+            nid: {
+                type: DataTypes.STRING,
+            },
             father_husband_name: {
+                type: DataTypes.STRING,
+            },
+            husband: {
                 type: DataTypes.STRING,
             },
             mother_name: {
