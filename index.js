@@ -44,6 +44,12 @@ app.use("/old_server/v1/upazillas", upzillasRouter);
 const unionInfosRouter = require("./routes/union_infos");
 app.use("/old_server/v1/union-infos", unionInfosRouter);
 
+const applicationsRouter = require("./routes/applications");
+app.use("/old_server/v1/applications", applicationsRouter);
+
+const oarishesRouter = require("./routes/oarishes");
+app.use("/old_server/v1/oarishes", oarishesRouter);
+
 db.sequelize.sync().then(() => {
     app.listen(port, () => {
         console.log(`UDCBD Server Running on ${port}`);

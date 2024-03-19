@@ -15,4 +15,12 @@ router.post("/add-union", async (req, res) => {
     res.send(result);
 });
 
+router.get("/users-union", async (req, res) => {
+    const { userId } = req.query;
+    const union = await union_infos.findOne({
+        where: { user_id: userId },
+    });
+    res.send(union);
+});
+
 module.exports = router;
