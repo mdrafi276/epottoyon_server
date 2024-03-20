@@ -47,6 +47,9 @@ module.exports = (sequelize, DataTypes) => {
             status: {
                 type: DataTypes.STRING,
             },
+            language: {
+                type: DataTypes.ENUM("bn", "en"),
+            },
             sanad_file: {
                 type: DataTypes.STRING,
             },
