@@ -11,9 +11,6 @@ module.exports = (sequelize, DataTypes) => {
             photo: {
                 type: DataTypes.STRING,
             },
-            attachment: {
-                type: DataTypes.STRING,
-            },
             union_logo: {
                 type: DataTypes.STRING,
             },
