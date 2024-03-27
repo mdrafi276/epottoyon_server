@@ -1,6 +1,16 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const linksRouter = require("./routes/links");
+const blogsRouter = require("./routes/blogs");
+const usersRouter = require("./routes/users");
+const unionsRouter = require("./routes/unions");
+const divisionsRouter = require("./routes/divisions");
+const districtsRouter = require("./routes/districts");
+const upzillasRouter = require("./routes/upzillas");
+const unionInfosRouter = require("./routes/union_infos");
+const applicationsRouter = require("./routes/applications");
+const oarishesRouter = require("./routes/oarishes");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -20,34 +30,24 @@ app.use(
 const db = require("./models");
 
 // Routers
-const linksRouter = require("./routes/links");
 app.use("/old_server/v1/links", linksRouter);
 
-const blogsRouter = require("./routes/blogs");
 app.use("/old_server/v1/blogs", blogsRouter);
 
-const usersRouter = require("./routes/users");
 app.use("/old_server/v1/users", usersRouter);
 
-const unionsRouter = require("./routes/unions");
 app.use("/old_server/v1/unions", unionsRouter);
 
-const divisionsRouter = require("./routes/divisions");
 app.use("/old_server/v1/divisions", divisionsRouter);
 
-const districtsRouter = require("./routes/districts");
 app.use("/old_server/v1/districts", districtsRouter);
 
-const upzillasRouter = require("./routes/upzillas");
 app.use("/old_server/v1/upazillas", upzillasRouter);
 
-const unionInfosRouter = require("./routes/union_infos");
 app.use("/old_server/v1/union-infos", unionInfosRouter);
 
-const applicationsRouter = require("./routes/applications");
 app.use("/old_server/v1/applications", applicationsRouter);
 
-const oarishesRouter = require("./routes/oarishes");
 app.use("/old_server/v1/oarishes", oarishesRouter);
 
 db.sequelize.sync().then(() => {
