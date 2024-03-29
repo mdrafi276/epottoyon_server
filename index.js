@@ -23,6 +23,7 @@ app.use(
             "http://localhost:5174",
             "https://udcbd.web.app",
             "https://udcbd.firebaseapp.com",
+            "https://eprottoyon.com"
         ],
     })
 );
