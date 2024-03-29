@@ -1,12 +1,47 @@
 const express = require("express");
 const router = express.Router();
-const {users} = require("../models");
+const { users } = require("../models");
 const bcrypt = require("bcryptjs");
 
 //getting all users
 router.get("/", async (req, res) => {
-    const allUsers = await users.findAll();
-    res.json(allUsers);
+    try {
+        const allUsers = await users.findAll();
+        res.status(200).json(allUsers);
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+//getting a specific user
+router.get("/get-user", async (req, res) => {
+    const { email } = req.query;
+
+    try {
+        const user = await users.findOne({ where: { email } });
+        res.json(user);
+    } catch (error) {
+        console.error("Error getting user:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+//getting user for filling user's info form
+router.get("/get-user-for-info-form", async (req, res) => {
+    const { email } = req.query;
+
+    try {
+        const user = await users.findOne({
+            where: { email },
+            attributes: ["id", "name", "email", "phone"],
+        });
+
+        res.json(user);
+    } catch (error) {
+        console.error("Error getting user:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
 });
 
 //registering user
@@ -56,6 +91,7 @@ router.patch("/make-user-verified", async (req, res) => {
     }
 });
 
+//checking if the entered email exists or not
 router.get("/check-email", async (req, res) => {
     const { email } = req.query;
 
@@ -69,18 +105,6 @@ router.get("/check-email", async (req, res) => {
         }
     } catch (error) {
         console.error("Error checking email and phone existence:", error);
-        res.status(500).json({ error: "Internal server error" });
-    }
-});
-
-router.get("/get-user", async (req, res) => {
-    const { email } = req.query;
-
-    try {
-        const user = await users.findOne({ where: { email } });
-        res.json(user);
-    } catch (error) {
-        console.error("Error getting user:", error);
         res.status(500).json({ error: "Internal server error" });
     }
 });

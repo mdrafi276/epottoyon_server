@@ -31,23 +31,14 @@ const db = require("./models");
 
 // Routers
 app.use("/old_server/v1/links", linksRouter);
-
 app.use("/old_server/v1/blogs", blogsRouter);
-
 app.use("/old_server/v1/users", usersRouter);
-
 app.use("/old_server/v1/unions", unionsRouter);
-
 app.use("/old_server/v1/divisions", divisionsRouter);
-
 app.use("/old_server/v1/districts", districtsRouter);
-
 app.use("/old_server/v1/upazillas", upzillasRouter);
-
 app.use("/old_server/v1/union-infos", unionInfosRouter);
-
 app.use("/old_server/v1/applications", applicationsRouter);
-
 app.use("/old_server/v1/oarishes", oarishesRouter);
 
 db.sequelize.sync().then(() => {
