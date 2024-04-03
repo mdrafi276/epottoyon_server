@@ -27,6 +27,22 @@ router.get("/get-user", async (req, res) => {
     }
 });
 
+//checking an user's status
+router.get("/check-user-status", async (req, res) => {
+    const email = req.query.email;
+
+    try {
+        const foundUser = await users.findOne({
+            where: { email },
+            attributes: ["status"],
+        });
+        res.json(foundUser);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
 //getting user for filling user's info form
 router.get("/get-user-for-info-form", async (req, res) => {
     const { email } = req.query;
