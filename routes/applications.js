@@ -3,14 +3,27 @@ const router = express.Router();
 const { applications } = require("../models");
 
 //getting all applications
+const PAGE_SIZE = 10;
+
 router.get("/", async (req, res) => {
     try {
-        const allApplications = await applications.findAll({
-            where: { sanad_id: 1 },
-            // offset: 3500,
-            limit: 10,
+        let { page } = req.query;
+        page = parseInt(page) || 1;
+
+        const offset = (page - 1) * PAGE_SIZE;
+
+        const allApplications = await applications.findAndCountAll({
+            offset: offset,
+            limit: PAGE_SIZE,
         });
-        res.json(allApplications);
+
+        const totalPages = Math.ceil(allApplications.count / PAGE_SIZE);
+
+        res.json({
+            page: page,
+            totalPages: totalPages,
+            applications: allApplications.rows,
+        });
     } catch (error) {
         console.error("Error fetching applications:", error);
         res.status(500).json({ error: "Failed to fetch applications" });
