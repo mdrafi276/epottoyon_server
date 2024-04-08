@@ -3,7 +3,7 @@ const router = express.Router();
 const { applications } = require("../models");
 
 //getting all applications
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 30;
 
 router.get("/", async (req, res) => {
     try {
@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
         const allApplications = await applications.findAndCountAll({
             offset: offset,
             limit: PAGE_SIZE,
+            attributes:["id", "applicant", "union_id", "sanad_id", "status"]
         });
 
         const totalPages = Math.ceil(allApplications.count / PAGE_SIZE);
