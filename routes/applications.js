@@ -3,7 +3,7 @@ const router = express.Router();
 const { applications } = require("../models");
 
 //getting all applications
-const PAGE_SIZE = 30;
+const PAGE_SIZE = 10;
 
 router.get("/", async (req, res) => {
     try {
@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
         const allApplications = await applications.findAndCountAll({
             offset: offset,
             limit: PAGE_SIZE,
+            order: [['created_at', 'DESC']],
             attributes:["id", "applicant", "union_id", "sanad_id", "status"]
         });
 
@@ -23,7 +24,7 @@ router.get("/", async (req, res) => {
         res.json({
             page: page,
             totalPages: totalPages,
-            applications: allApplications.rows,
+            rows: allApplications.rows,
         });
     } catch (error) {
         console.error("Error fetching applications:", error);
