@@ -17,12 +17,15 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get("/get-name-by-unionId", async (req, res) => {
+router.get("/get-name-by-id", async (req, res) => {
     try {
-      const {unionId} = req.query;
-      const upzilla = await upzillas.findOne({
-            
-      })
+        const { id } = req.query;
+        const upazilla = await upzillas.findOne({
+            where: { id },
+            attributes: ["id", "name", "bn_name", "district_id"],
+        });
+
+        res.json(upazilla);
     } catch (error) {
         console.error("Failed to fetch upzilla names:", error);
         res.status(500).send("An error occurred while fetching the upzilla names.");
