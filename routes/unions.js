@@ -21,7 +21,7 @@ router.get("/get-name-by-id", async (req, res) => {
     try {
         const union = await unions.findOne({
             where: { id },
-            attributes: ["name", "bn_name", "upazilla_id"],
+            attributes: ["id", "name", "bn_name", "upazilla_id"],
         });
 
         if (!union) {

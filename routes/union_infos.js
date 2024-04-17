@@ -42,7 +42,7 @@ router.get("/get-for-pdf", async (req, res) => {
     try {
         const { id } = req.query;
         const unionInfo = await union_infos.findOne({
-            where: { id },
+            where: { union_id: id },
             attributes: ["id", "union_id", "user_id", "chairman", "che"],
         });
 
