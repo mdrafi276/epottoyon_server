@@ -4,8 +4,14 @@ const { blogs } = require("../models");
 const { where } = require("sequelize");
 
 router.get("/", async (req, res) => {
-    const allBlogs = await blogs.findAll();
-    res.json(allBlogs);
+    try {
+        const allBlogs = await blogs.findAll();
+        res.json(allBlogs);
+    } catch (error) {
+        res.status(500).json({
+            error: "An error occurred while fetching the blogs.",
+        });
+    }
 });
 
 router.get("/get-type-by-id", async (req, res) => {
