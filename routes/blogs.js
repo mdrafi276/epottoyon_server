@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { blogs } = require("../models");
-const { where } = require("sequelize");
 
 router.get("/", async (req, res) => {
     try {
@@ -20,7 +19,7 @@ router.get("/get-type-by-id", async (req, res) => {
     try {
         const certificate = await blogs.findOne({
             where: { id },
-            attributes: ["description"],
+            attributes: ["id", "description"],
         });
         res.json(certificate);
     } catch (error) {
