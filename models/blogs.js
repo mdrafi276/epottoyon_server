@@ -17,6 +17,9 @@ module.exports = (sequelize, Datatypes) => {
             description: {
                 type: Datatypes.STRING,
             },
+            eng_description: {
+                type: Datatypes.STRING,
+            },
         },
         {
             createdAt: "created_at",

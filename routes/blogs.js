@@ -19,7 +19,7 @@ router.get("/get-type-by-id", async (req, res) => {
     try {
         const certificate = await blogs.findOne({
             where: { id },
-            attributes: ["id", "description"],
+            attributes: ["id", "description", "eng_description"],
         });
         res.json(certificate);
     } catch (error) {
