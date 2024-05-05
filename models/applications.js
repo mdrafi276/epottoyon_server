@@ -1,6 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-    // TODO: make one application with multilingual functionality.
-
     const applications = sequelize.define(
         "applications",
         {
