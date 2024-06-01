@@ -48,7 +48,7 @@ router.get("/application-details", async (req, res) => {
     }
 });
 
-//post api to add certificates
+//post api to add certificatess
 router.post("/add-certificate", async (req, res) => {
     try {
         const newCertificate = req.body;
